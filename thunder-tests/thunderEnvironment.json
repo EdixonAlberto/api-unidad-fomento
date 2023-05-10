@@ -1,0 +1,25 @@
+[
+  {
+    "_id": "5c8e0881-9e0e-4317-8e03-d4818a5f06a1",
+    "name": "DEV",
+    "default": true,
+    "sortNum": 10000,
+    "created": "2023-05-09T21:21:15.377Z",
+    "modified": "2023-05-09T21:21:55.606Z",
+    "data": [
+      {
+        "name": "HOST",
+        "value": "http://localhost:3000"
+      }
+    ]
+  },
+  {
+    "_id": "543027b0-ab8c-40d8-b922-870a88826762",
+    "name": "PROD",
+    "default": false,
+    "sortNum": 20000,
+    "created": "2023-05-09T21:22:07.272Z",
+    "modified": "2023-05-09T21:22:07.272Z",
+    "data": []
+  }
+]

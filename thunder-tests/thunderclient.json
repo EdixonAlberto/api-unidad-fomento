@@ -1,0 +1,36 @@
+[
+  {
+    "_id": "a82a4ee6-062b-450d-8b2f-c77a76b2c7ef",
+    "colId": "fb00eec2-1d76-4cba-9ee2-22dea1041067",
+    "containerId": "",
+    "name": "get status",
+    "url": "{{HOST}}/api/status",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2023-05-09T21:21:00.710Z",
+    "modified": "2023-05-10T04:18:53.125Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "40cb2842-a4e2-48c3-abea-0fc4e4ceb734",
+    "colId": "fb00eec2-1d76-4cba-9ee2-22dea1041067",
+    "containerId": "",
+    "name": "ping",
+    "url": "{{HOST}}/api/ping",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2023-05-09T21:53:36.102Z",
+    "modified": "2023-05-10T05:21:05.731Z",
+    "headers": [
+      {
+        "name": "Origin",
+        "value": "http://localhost:8081",
+        "isDisabled": true
+      }
+    ],
+    "params": [],
+    "tests": []
+  }
+]
