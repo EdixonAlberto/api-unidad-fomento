@@ -1,0 +1,8 @@
+# App
+__pycache__/
+*.env
+
+# vsCode
+/.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
