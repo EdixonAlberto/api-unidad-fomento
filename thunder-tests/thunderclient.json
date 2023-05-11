@@ -8,9 +8,19 @@
     "method": "GET",
     "sortNum": 10000,
     "created": "2023-05-09T21:21:00.710Z",
-    "modified": "2023-05-10T04:18:53.125Z",
-    "headers": [],
+    "modified": "2023-05-11T20:38:00.909Z",
+    "headers": [
+      {
+        "name": "Origin",
+        "value": "http://localhost:8081",
+        "isDisabled": true
+      }
+    ],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{ACCESS_TOKEN}}"
+    },
     "tests": []
   },
   {
@@ -18,19 +28,37 @@
     "colId": "fb00eec2-1d76-4cba-9ee2-22dea1041067",
     "containerId": "",
     "name": "get unidad fomento",
-    "url": "{{HOST}}/api/unidad_fomento?date=01-01-2013",
+    "url": "{{HOST}}/api/unidad_fomento?date=01-01-2024",
     "method": "GET",
     "sortNum": 15000,
     "created": "2023-05-10T20:16:07.146Z",
-    "modified": "2023-05-11T02:13:08.978Z",
+    "modified": "2023-05-11T17:31:50.850Z",
     "headers": [],
     "params": [
       {
         "name": "date",
-        "value": "01-01-2013",
+        "value": "01-01-2024",
         "isPath": false
       }
     ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{ACCESS_TOKEN}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "a7e6fbab-7594-4b9e-89b3-9dfc1cd4c775",
+    "colId": "fb00eec2-1d76-4cba-9ee2-22dea1041067",
+    "containerId": "",
+    "name": "not_found",
+    "url": "{{HOST}}/api/no_found",
+    "method": "GET",
+    "sortNum": 12500,
+    "created": "2023-05-11T16:07:33.025Z",
+    "modified": "2023-05-11T20:35:00.995Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]

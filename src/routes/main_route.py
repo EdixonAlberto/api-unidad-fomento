@@ -9,7 +9,8 @@ def status() -> Response:
   timestamp_utc = timestamp_unix.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
 
   return JsonResponse.ok({
-      'status': 'OK',
       'api_version': '0.0.1',
-      'date_server': timestamp_utc
+      'date_server': timestamp_utc,
+      'description': 'API Rest para consultar el valor de la unidad de fomento en Chile',
+      'status': 'OK'
   })

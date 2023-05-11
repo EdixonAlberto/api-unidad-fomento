@@ -14,17 +14,25 @@ class ScrapingSII(Config):
     url_sii_chile = self.env('URL_SII_CHILE')
 
     if (not url_sii_chile):
-      print('ERROR: Environment variable "URL_SII_CHILE" not found')
-      exit()
+      raise Exception("Environment variable 'URL_SII_CHILE' not found")
 
     self._query_day = int(date.split('-')[0])
     self._query_month = int(date.split('-')[1])
-    year: str = date.split('-')[2]
-    url_path_year: str = f"valores_y_fechas/uf/uf{year}"
+    query_year: str = date.split('-')[2]
+    url: str = f"{url_sii_chile}/valores_y_fechas/uf/uf{query_year}.htm"
 
-    html_response = requests.get(f"{url_sii_chile}/{url_path_year}.htm")
-    if (html_response.status_code == 404):
-      raise Exception('not_found')
+    try:
+      html_response = requests.get(url)
+      if (html_response.status_code == 404):
+        raise Exception('not_found')
+    except Exception as error:
+      errors = str(error).split(':')
+      error_message = errors[1].strip() if len(errors) > 1 else error
+
+      if (error_message == 'Max retries exceeded with url'):
+        raise Exception(f"Max retries exceeded with url '{url}'")
+      else:
+        raise error
 
     self.soup = BeautifulSoup(html_response.text, 'html.parser')
 

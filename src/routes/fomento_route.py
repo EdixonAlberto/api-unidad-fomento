@@ -1,6 +1,5 @@
 from datetime import datetime
-from flask import request
-from src.api import api
+from src.api import api, request
 from src.modules.response import Response, JsonResponse
 from src.modules.scraping import ScrapingSII
 
@@ -40,5 +39,4 @@ def unidad_fomento() -> Response:
     if (str(error) == 'not_found'):
       return JsonResponse.not_found('No se ha podido encontrar unidad de fomento para esta fecha')
     else:
-      print(f"ERROR: {error}")
-      return JsonResponse.error(500, ['Server error'])
+      raise error
