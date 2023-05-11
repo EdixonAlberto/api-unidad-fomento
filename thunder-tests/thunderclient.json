@@ -28,16 +28,16 @@
     "colId": "fb00eec2-1d76-4cba-9ee2-22dea1041067",
     "containerId": "",
     "name": "get unidad fomento",
-    "url": "{{HOST}}/api/unidad_fomento?date=01-01-2024",
+    "url": "{{HOST}}/api/unidad_fomento?date=02-01-2023",
     "method": "GET",
     "sortNum": 15000,
     "created": "2023-05-10T20:16:07.146Z",
-    "modified": "2023-05-11T17:31:50.850Z",
+    "modified": "2023-05-11T20:59:07.875Z",
     "headers": [],
     "params": [
       {
         "name": "date",
-        "value": "01-01-2024",
+        "value": "02-01-2023",
         "isPath": false
       }
     ],

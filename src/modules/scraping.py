@@ -1,8 +1,8 @@
-from typing import Optional
-from datetime import datetime
+from typing import Optional, Union
 import requests
 from bs4 import BeautifulSoup
 from src.modules.config import Config
+from src.utils.time_util import Date, datetime
 
 
 class ScrapingSII(Config):
@@ -26,8 +26,8 @@ class ScrapingSII(Config):
       if (html_response.status_code == 404):
         raise Exception('not_found')
     except Exception as error:
-      errors = str(error).split(':')
-      error_message = errors[1].strip() if len(errors) > 1 else error
+      errors: list[str] = str(error).split(':')
+      error_message: Union[str, Exception] = errors[1].strip() if len(errors) > 1 else error
 
       if (error_message == 'Max retries exceeded with url'):
         raise Exception(f"Max retries exceeded with url '{url}'")
@@ -38,36 +38,21 @@ class ScrapingSII(Config):
 
   def get_unit_fomento(self) -> Optional[str]:
     month_table_list = self.soup.find_all('div', class_="meses")
+    unit_fomento: Optional[str] = None
 
-    month_spanish_english = {
-        'enero': 'january',
-        'febrero': 'february',
-        'marzo': 'march',
-        'abril': 'april',
-        'mayo': 'may',
-        'junio': 'june',
-        'julio': 'july',
-        'agosto': 'august',
-        'septiembre': 'september',
-        'octubre': 'october',
-        'noviembre': 'november',
-        'diciembre': 'december'
-    }
-
-    unit_fomento = None
     for month_table in month_table_list:
       if (month_table.get('id') != 'mes_all'):
-        month_name: str = month_table.find('h2').text
-        month_name_english: str = month_spanish_english[month_name.lower()]
-        month_number: int = datetime.strptime(month_name_english, "%B").month
+        month_spanish: str = month_table.find('h2').text
+        month_english: str = Date.translate_month_english(month_spanish)
+        month_number: int = datetime.strptime(month_english, "%B").month
 
         if (month_number == self._query_month):
           field_list = month_table.find_all('tr')
-          field_list.pop(0)
+          field_list.pop(0)  # The first field is removed because it belongs to the months
 
           for field in field_list:
             day_list = field.find_all('strong')
-            index = 0
+            index: int = 0  # The index of the "strong" text is stored to later consult the "td" text corresponding to that location
 
             for day in day_list:
               day_number: int = int(day.text)

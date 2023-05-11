@@ -1,16 +1,15 @@
-from datetime import datetime
 from src.api import api
 from src.modules.response import Response, JsonResponse
+from src.utils.time_util import Date
 
 
 @api.get("/status")
 def status() -> Response:
-  timestamp_unix = datetime.utcnow()
-  timestamp_utc = timestamp_unix.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+  timestamp = Date.get_timestamp()['utc']
 
   return JsonResponse.ok({
       'api_version': '0.0.1',
-      'date_server': timestamp_utc,
+      'date_server': timestamp,
       'description': 'API Rest para consultar el valor de la unidad de fomento en Chile',
       'status': 'OK'
   })
