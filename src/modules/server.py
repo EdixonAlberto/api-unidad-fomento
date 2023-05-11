@@ -2,7 +2,7 @@ from flask import Flask
 from src.modules.config import Config
 from src.api import api
 from src.routes import fomento_route, main_route
-from src.middlewares import cors_midd
+from src.middlewares import cors_midd, response_midd
 
 
 class Server(Config):

@@ -23,3 +23,13 @@ class JsonResponse():
     ))
     res.status_code = status
     return res
+
+  @staticmethod
+  def not_found(response: str) -> Response:
+    res = make_response(jsonify(
+        status_code=404,
+        response=response,
+        errors=[]
+    ))
+    res.status_code = 404
+    return res

@@ -14,23 +14,23 @@
     "tests": []
   },
   {
-    "_id": "40cb2842-a4e2-48c3-abea-0fc4e4ceb734",
+    "_id": "e021bf4c-a160-4429-b363-d7a032d7f143",
     "colId": "fb00eec2-1d76-4cba-9ee2-22dea1041067",
     "containerId": "",
-    "name": "ping",
-    "url": "{{HOST}}/api/ping",
+    "name": "get unidad fomento",
+    "url": "{{HOST}}/api/unidad_fomento?date=01-01-2013",
     "method": "GET",
-    "sortNum": 20000,
-    "created": "2023-05-09T21:53:36.102Z",
-    "modified": "2023-05-10T05:21:05.731Z",
-    "headers": [
+    "sortNum": 15000,
+    "created": "2023-05-10T20:16:07.146Z",
+    "modified": "2023-05-11T02:13:08.978Z",
+    "headers": [],
+    "params": [
       {
-        "name": "Origin",
-        "value": "http://localhost:8081",
-        "isDisabled": true
+        "name": "date",
+        "value": "01-01-2013",
+        "isPath": false
       }
     ],
-    "params": [],
     "tests": []
   }
 ]
