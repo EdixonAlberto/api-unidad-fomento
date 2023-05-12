@@ -1,12 +1,15 @@
 from typing import Optional
-from src.api import api, request
+from src.api import bp_api, request
 from src.modules.config import Config
 from src.modules.response import Response, JsonResponse
 
 
-@api.before_request
+@bp_api.before_request
 def auth() -> Optional[Response]:
   """Authentication"""
+  if (request.path in ['/api/doc/', '/api/swagger.json']):  # Ignore authentication to files of documentation
+    return
+
   config = Config()
   token = config.env('ACCESS_TOKEN')
 

@@ -8,6 +8,7 @@ beautifulsoup4 = "*"
 requests = "*"
 flask = "*"
 python-dotenv = "*"
+flask-restx = "*"
 
 [dev-packages]
 autopep8 = "*"

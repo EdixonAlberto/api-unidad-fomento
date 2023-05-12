@@ -1,10 +1,10 @@
 from typing import Optional
-from src.api import api, request
+from src.api import bp_api, request
 from src.modules.config import Config
 from src.modules.response import Response, JsonResponse
 
 
-@api.before_request
+@bp_api.before_request
 def custom_cors() -> Optional[Response]:
   """Custom Cors"""
   config = Config()
@@ -13,7 +13,7 @@ def custom_cors() -> Optional[Response]:
   if (not white_list):
     raise Exception("Environment variable 'WHITE_LIST' not found")
 
-  if not 'origin' in request.headers:
+  if not 'origin' in request.headers:  # Ignore requests coming from servers
     return
 
   origin = request.headers['origin']

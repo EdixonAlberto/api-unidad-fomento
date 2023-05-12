@@ -1,6 +1,6 @@
 from flask import Flask
 from src.modules.config import Config
-from src.api import api
+from src.api import bp_api
 from src.routes import main_route, fomento_route
 from src.middlewares import (
     cors_midd,
@@ -19,7 +19,7 @@ class Server(Config):
     self.routes_middlewares()
 
   def routes_middlewares(self) -> None:
-    self.app.register_blueprint(api)
+    self.app.register_blueprint(bp_api)
 
   def start(self) -> None:
     port = self.env('PORT')
