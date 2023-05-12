@@ -18,5 +18,5 @@ pytest = "*"
 python_version = "3.8"
 
 [scripts]
-dev="python run.py"
+start="python run.py"
 test="pytest -s"
