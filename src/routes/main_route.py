@@ -1,5 +1,5 @@
-from src.api import api, Resource, fields, create_response_model, parser_auth
-from src.modules.response import Response, JsonResponse
+from src.api import api, Resource, fields, create_response_model, response_error_model, parser_auth
+from src.modules.response import Response, JsonResponse, OK, UNAUTHORIZED
 from src.utils.time_util import Date
 
 # Create documentation of models
@@ -16,7 +16,8 @@ response_model = create_response_model('ResponseStatus', status_model)
 class MainRoute(Resource):
   @api.doc(description='API Status')
   @api.expect(parser_auth)
-  @api.response(200, 'API Status', model=response_model)
+  @api.response(int(OK), 'API Status', model=response_model)
+  @api.response(int(UNAUTHORIZED), description='Unauthorized', model=response_error_model)
   def get(self) -> Response:
     """Get API status"""
     timestamp = Date.get_timestamp()['utc']

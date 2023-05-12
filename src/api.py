@@ -26,6 +26,12 @@ api = Api(
 parser_auth = api.parser()
 parser_auth.add_argument('Authorization', type=str, help='Access token', location='headers')
 
+response_error_model = api.model('ResponseError', {
+    'errors': fields.List(fields.String),
+    'response': fields.String,
+    'status_code': fields.Integer
+})
+
 
 def create_response_model(name: str, model):
   return api.model(name, {

@@ -1,3 +1,4 @@
+from http.client import OK, BAD_REQUEST, UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR
 from typing import List, Union
 from flask import jsonify, make_response
 from flask.wrappers import Response
@@ -5,13 +6,13 @@ from flask.wrappers import Response
 
 class JsonResponse():
   @staticmethod
-  def ok(response: Union[dict, str, int, float]) -> Response:
+  def ok(response: Union[dict, str, int, float, list]) -> Response:
     res = make_response(jsonify(
-        status_code=200,
+        status_code=OK,
         response=response,
         errors=[]
     ))
-    res.status_code = 200
+    res.status_code = OK
     return res
 
   @staticmethod
@@ -27,9 +28,9 @@ class JsonResponse():
   @staticmethod
   def not_found(response: str) -> Response:
     res = make_response(jsonify(
-        status_code=404,
+        status_code=NOT_FOUND,
         response=response,
         errors=[]
     ))
-    res.status_code = 404
+    res.status_code = NOT_FOUND
     return res

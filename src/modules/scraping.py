@@ -2,6 +2,7 @@ from typing import Optional, Union
 import requests
 from bs4 import BeautifulSoup
 from src.modules.config import Config
+from src.modules.response import NOT_FOUND
 from src.utils.time_util import Date, datetime
 
 
@@ -23,7 +24,7 @@ class ScrapingSII(Config):
 
     try:
       html_response = requests.get(url)
-      if (html_response.status_code == 404):
+      if (html_response.status_code == NOT_FOUND):
         raise Exception('not_found')
     except Exception as error:
       errors: list[str] = str(error).split(':')
