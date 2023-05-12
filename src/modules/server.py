@@ -28,4 +28,4 @@ class Server(Config):
     mode_dev = self.env('MODE_API') == 'development'
     debug = True if mode_dev else False
 
-    self.app.run(debug=debug, port=port, use_reloader=True)
+    self.app.run(debug=debug, port=port, host='localhost' if (mode_dev) else '0.0.0.0', use_reloader=mode_dev)
