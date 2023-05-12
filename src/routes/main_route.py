@@ -20,7 +20,7 @@ class MainRoute(Resource):
   @api.response(int(UNAUTHORIZED), description='Unauthorized', model=response_error_model)
   def get(self) -> Response:
     """Get API status"""
-    timestamp = Date.get_timestamp()['utc']
+    timestamp: str = Date.get_timestamp_utc()
 
     return JsonResponse.ok({
         'api_version': api.version,

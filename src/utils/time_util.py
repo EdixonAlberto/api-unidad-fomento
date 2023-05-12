@@ -1,4 +1,4 @@
-from typing import Optional, Dict, Literal, Union
+from typing import Optional, Union
 from datetime import datetime
 
 
@@ -13,12 +13,9 @@ class Date():
       return
 
   @staticmethod
-  def get_timestamp(date: datetime = datetime.utcnow()) -> Dict[Literal['unix', 'utc'], Union[str, int]]:
-    """Method to get timestamp in format unix or utc"""
-    return {
-        'unix': 0,
-        'utc': str(date.strftime('%Y-%m-%dT%H:%M:%S.%fZ'))
-    }
+  def get_timestamp_utc(date: datetime = datetime.utcnow()) -> str:
+    """Method to get timestamp in format utc"""
+    return str(date.strftime('%Y-%m-%dT%H:%M:%S.%fZ'))
 
   @staticmethod
   def translate_month_english(month: Union[str, int]) -> str:

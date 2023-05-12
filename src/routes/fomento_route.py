@@ -28,24 +28,35 @@ class FomentoRoute(Resource):
   def get(self) -> Response:
     """Get the value of the Unit Formento for a specific date"""
     query_date = request.args.get('date')
+    MINUMUN_DATE: str = '01-01-2013'
 
     if (not query_date):
       return JsonResponse.error(BAD_REQUEST, [
           "Query param 'date' is required",
-          "Query param 'date' should have this format: 01-01-2013"
+          "Query param 'date' should have format of date: 01-01-2013"
       ])
 
     query_datetime = Date.validate_format_date(query_date)
 
     if (not query_datetime):
       return JsonResponse.error(BAD_REQUEST, [
-          "Query param 'date' should have this format: 01-01-2013"
+          "Query param 'date' should have format of date: 01-01-2013"
+      ])
+
+    # Validate minimun date that can be consulted
+    minimum_datetime = Date.validate_format_date(MINUMUN_DATE)
+    minimum_timestamp: float = minimum_datetime.timestamp() if (minimum_datetime != None) else 0
+    query_timestamp: float = query_datetime.timestamp() if (query_datetime != None) else 0
+
+    if (query_timestamp < minimum_timestamp):
+      return JsonResponse.error(BAD_REQUEST, [
+          f"The minimum date that can be consulted is: {MINUMUN_DATE}"
       ])
 
     try:
       scraping_sii = ScrapingSII(query_date)
       unit_string = scraping_sii.get_unit_fomento()
-      query_date_timestamp = Date.get_timestamp(query_datetime)['utc']
+      query_date_timestamp = Date.get_timestamp_utc(query_datetime)
 
       if (not unit_string):
         raise Exception('not_found')
@@ -60,6 +71,6 @@ class FomentoRoute(Resource):
       })
     except Exception as error:
       if (str(error) == 'not_found'):
-        return JsonResponse.not_found('Unit fomento could not be found for this date')
+        return JsonResponse.not_found('Unit fomento not found for this date')
       else:
         raise error
