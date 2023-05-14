@@ -26,6 +26,6 @@ class Server(Config):
     port = int(port) if port is not None else 3000
 
     mode_dev = self.env('MODE_API') == 'development'
-    debug = True if mode_dev else False
+    debug = self.env('DEBUG') == 'true'
 
     self.app.run(debug=debug, port=port, host='localhost' if (mode_dev) else '0.0.0.0', use_reloader=mode_dev)

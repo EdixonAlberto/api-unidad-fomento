@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    environment:
+      PORT: ${PORT}
+      WHITE_LIST: ${WHITE_LIST}
+      URL_SII_CHILE: ${URL_SII_CHILE}
+      ACCESS_TOKEN: ${ACCESS_TOKEN}
+    container_name: app
+    restart: unless-stopped
+    ports:
+      - $PORT:$PORT
+    volumes:
+      - api-fomento:/app
+
+volumes:
+  api-fomento:

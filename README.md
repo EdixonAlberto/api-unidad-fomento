@@ -12,7 +12,7 @@ creada con la especificación OpenAPI:
 
 Demo API &#x279c; **[OpenAPI Specification](https://api-unidad-fomento-production.up.railway.app/api/doc/)**
 
-Usar el siguiente token:
+En la Demo usar el siguiente token:
 
 ```sh
 ACCESS_TOKEN=VUysDZOVaV5q72jKMbSPti2RP/H?LArA?ZKbd!EUqsvyl3TMKfuNCvgDHA4oEUAn
@@ -21,10 +21,11 @@ ACCESS_TOKEN=VUysDZOVaV5q72jKMbSPti2RP/H?LArA?ZKbd!EUqsvyl3TMKfuNCvgDHA4oEUAn
 > NOTA: Este proyecto es la solución del siguiente desafío de código:
 > [https://gist.github.com/lhidalgo42/47c2c1ea4ddbfd50e4b0acd82c24bc23](https://gist.github.com/lhidalgo42/47c2c1ea4ddbfd50e4b0acd82c24bc23)
 
-### Inicio
+### Inicio (En Local)
 
-Antes de comenzar a desarrollar debe instalar pipenv con pip, luego instalar las dependencias y copiar el
-[template](./.env.template) con las variables de entorno en la raiz del proyecto, luego podrá ejecutar el script
+Para iniciar la API en su maquina local primero deberá instalar `pipenv` con el administrador de paquetes de python
+`pip`, luego iniciar el entorno virtual, instalar las dependencias y crear el archivo `.env` en la raiz del proyecto
+copiando el [template](./.env.template) proporcionado con las variables de entorno, por último ejecutar el script
 `start`.
 
 ```sh
@@ -33,6 +34,17 @@ pipenv shell
 pipenv install --dev
 cp .env.template .env
 pipenv run start
+```
+
+### Inicio (En Docker)
+
+Para iniciar la API en docker primero deberá crear el archivo `.env` en la raiz del proyecto copiando el
+[template](./.env.template) proporcionado con las variables de entorno, por último ejecutar el archivo de
+[docker compose](./docker-compose.yml).
+
+```sh
+cp .env.template .env
+docker-compose up -d
 ```
 
 ### Endpoints
