@@ -21,6 +21,8 @@ ACCESS_TOKEN=VUysDZOVaV5q72jKMbSPti2RP/H?LArA?ZKbd!EUqsvyl3TMKfuNCvgDHA4oEUAn
 > NOTA: Este proyecto es la solución del siguiente desafío de código:
 > [https://gist.github.com/lhidalgo42/47c2c1ea4ddbfd50e4b0acd82c24bc23](https://gist.github.com/lhidalgo42/47c2c1ea4ddbfd50e4b0acd82c24bc23)
 
+---
+
 ### Inicio (En Local)
 
 Para iniciar la API en su maquina local primero deberá instalar `pipenv` con el administrador de paquetes de python
@@ -49,10 +51,11 @@ docker-compose up -d
 
 ### Endpoints
 
-| Endpoint                 | HTTP | Description                                                     | Query Params     |
-| ------------------------ | ---- | --------------------------------------------------------------- | ---------------- |
-| 🔒 `/api/status`         | GET  | Obtener estatus de la api                                       |                  |
-| 🔒 `/api/unidad_fomento` | GET  | Obtener valor de la unidad de fomento para una fecha específica | ?date=01-01-2013 |
+| Endpoint                       | HTTP | Description                                                                               | Query Params     |
+| ------------------------------ | ---- | ----------------------------------------------------------------------------------------- | ---------------- |
+| 🔒 `/api/status`               | GET  | Obtener estatus de la api                                                                 |                  |
+| 🔒 `/api/unidad_fomento`       | GET  | Obtener valor de la unidad de fomento para una fecha específica                           | ?date=01-01-2013 |
+| 🔒 `/api/unidad_fomento_meses` | GET  | Obtener una lista de meses con los valores de la unidad de fomento para un año específico | ?year=2013       |
 
 ### Ejemplo
 

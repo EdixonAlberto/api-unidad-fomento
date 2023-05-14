@@ -28,16 +28,16 @@
     "colId": "fb00eec2-1d76-4cba-9ee2-22dea1041067",
     "containerId": "",
     "name": "get unidad fomento",
-    "url": "{{HOST}}/api/unidad_fomento?date=01-01-2013",
+    "url": "{{HOST}}/api/unidad_fomento?date=28-02-2023",
     "method": "GET",
     "sortNum": 15000,
     "created": "2023-05-10T20:16:07.146Z",
-    "modified": "2023-05-12T18:53:31.368Z",
+    "modified": "2023-05-14T16:26:46.285Z",
     "headers": [],
     "params": [
       {
         "name": "date",
-        "value": "01-01-2013",
+        "value": "28-02-2023",
         "isPath": false
       }
     ],
@@ -59,6 +59,30 @@
     "modified": "2023-05-11T20:35:00.995Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "258abdb3-3fa3-46f7-85c2-380d83db9373",
+    "colId": "fb00eec2-1d76-4cba-9ee2-22dea1041067",
+    "containerId": "",
+    "name": "get list unidad fomento",
+    "url": "{{HOST}}/api/unidad_fomento_meses?year=2012",
+    "method": "GET",
+    "sortNum": 25000,
+    "created": "2023-05-14T13:52:14.152Z",
+    "modified": "2023-05-14T17:13:28.018Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "year",
+        "value": "2012",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{ACCESS_TOKEN}}"
+    },
     "tests": []
   }
 ]

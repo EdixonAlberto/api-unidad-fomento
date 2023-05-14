@@ -87,3 +87,11 @@ def test_unidad_fomento_not_found(client, headers):
   status_code = data['status_code']
   message = data['response']
   assert status_code == NOT_FOUND and (not not message)
+
+
+def test_unidad_fomento_meses(client, headers):
+  response = client.get("/api/unidad_fomento_meses?year=2013", headers=headers)
+  data = response.json
+  status_code = data['status_code']
+  months_list = data['response']
+  assert status_code == OK and months_list['january']['31']['unit_string'] == '22.807,54'

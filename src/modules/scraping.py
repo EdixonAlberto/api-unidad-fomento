@@ -1,9 +1,14 @@
-from typing import Optional, Union
+from typing import Optional, Union, Dict, TypedDict
 import requests
 from bs4 import BeautifulSoup
 from src.modules.config import Config
 from src.modules.response import NOT_FOUND
 from src.utils.time_util import Date, datetime
+
+
+class UnitFomentoDict(TypedDict):
+  unit: float
+  unit_string: str
 
 
 class ScrapingSII(Config):
@@ -37,9 +42,9 @@ class ScrapingSII(Config):
 
     self.soup = BeautifulSoup(html_response.text, 'html.parser')
 
-  def get_unit_fomento(self) -> Optional[str]:
+  def get_unit_fomento(self) -> Optional[UnitFomentoDict]:
     month_table_list = self.soup.find_all('div', class_="meses")
-    unit_fomento: Optional[str] = None
+    unit_fomento: Optional[UnitFomentoDict] = None
 
     for month_table in month_table_list:
       if (month_table.get('id') != 'mes_all'):
@@ -52,16 +57,64 @@ class ScrapingSII(Config):
           field_list.pop(0)  # The first field is removed because it belongs to the months
 
           for field in field_list:
-            day_list = field.find_all('strong')
-            index: int = 0  # The index of the "strong" text is stored to later consult the "td" text corresponding to that location
+            day_list = field.find_all('th')
+            index: int = 0  # The index of the "th" text is stored to later consult the "td" text corresponding to that location
 
             for day in day_list:
-              day_number: int = int(day.text)
+              if (day.text):
+                day_number: int = int(day.text)
 
-              if (day_number == self._query_day):
-                unit_fomento = field.find_all('td')[index].text
-                break
+                if (day_number == self._query_day):
+                  unit_string: str = field.find_all('td')[index].text
+
+                  if (not unit_string):
+                    break
+
+                  unit_format_number: str = unit_string.replace('.', '').replace(',', '.')
+                  unit: float = float(unit_format_number)
+
+                  unit_fomento = {
+                      'unit': unit,
+                      'unit_string': unit_format_number
+                  }
+                  break
 
               index = index + 1
 
     return unit_fomento
+
+  def get_unit_fomento_list(self) -> Dict[str, Dict[str, UnitFomentoDict]]:
+    month_table_list = self.soup.find_all('div', class_="meses")
+    unit_fomento_list: Dict[str, Dict[str, UnitFomentoDict]] = {}
+
+    for month_table in month_table_list:
+      if (month_table.get('id') != 'mes_all'):
+        month_spanish: str = month_table.find('h2').text
+        month_english: str = Date.translate_month_english(month_spanish)
+        unit_fomento_list[month_english] = {}
+
+        field_list = month_table.find_all('tr')
+        field_list.pop(0)  # The first field is removed because it belongs to the months
+
+        for field in field_list:
+          day_list = field.find_all('th')
+          index: int = 0  # The index of the "th" text is stored to later consult the "td" text corresponding to that location
+
+          for day in day_list:
+            day_key = day.text
+
+            if (day_key):
+              unit_string: str = field.find_all('td')[index].text
+
+              if (unit_string):
+                unit_format_number: str = unit_string.replace('.', '').replace(',', '.')
+                unit: float = float(unit_format_number)
+
+                unit_fomento_list[month_english][day_key] = {
+                    'unit': unit,
+                    'unit_string': unit_string
+                }
+
+            index = index + 1
+
+    return unit_fomento_list

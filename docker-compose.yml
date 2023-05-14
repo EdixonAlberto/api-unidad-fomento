@@ -14,8 +14,3 @@ services:
     restart: unless-stopped
     ports:
       - $PORT:$PORT
-    volumes:
-      - api-fomento:/app
-
-volumes:
-  api-fomento:
