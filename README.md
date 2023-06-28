@@ -10,14 +10,6 @@ API Rest para consultar el valor de la unidad de fomento en Chile.
 Se provee una "demo temporal" con la que podrán interactuar con la API la cual contiene una página de documentación
 creada con la especificación OpenAPI:
 
-Demo API &#x279c; **[OpenAPI Specification](https://api-unidad-fomento-production.up.railway.app/api/doc/)**
-
-En la Demo usar el siguiente token:
-
-```sh
-ACCESS_TOKEN=VUysDZOVaV5q72jKMbSPti2RP/H?LArA?ZKbd!EUqsvyl3TMKfuNCvgDHA4oEUAn
-```
-
 > NOTA: Este proyecto es la solución del siguiente desafío de código:
 > [https://gist.github.com/lhidalgo42/47c2c1ea4ddbfd50e4b0acd82c24bc23](https://gist.github.com/lhidalgo42/47c2c1ea4ddbfd50e4b0acd82c24bc23)
 
